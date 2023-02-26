@@ -1,0 +1,24 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.8.10'
+    id 'application'
+}
+
+group = 'com.bride.kotlin.coroutines'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
+
+sourceCompatibility = JavaVersion.VERSION_11
+
+compileKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_11
+}
+
+application {
+    mainClassName = 'MainKt'
+}
