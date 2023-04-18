@@ -1,9 +1,9 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.3.61'
-    id 'org.jetbrains.kotlin.plugin.spring' version '1.3.61'
-    id "org.springframework.boot" version "2.2.2.RELEASE"
-    id "io.spring.dependency-management" version "1.0.8.RELEASE"
+    id 'org.jetbrains.kotlin.jvm' version '1.8.20'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.8.20'
+    id "org.springframework.boot" version "3.0.1"
+    id "io.spring.dependency-management" version "1.1.0"
 }
 
 group = 'com.bride.kotlin.coroutines'
@@ -15,7 +15,6 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
@@ -27,21 +26,14 @@ dependencies {
     // 不能用webmvc。采用webflux，reactive实现，类flow，支持suspend函数
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     // r2dbc类似JDBC，提供reactive API支持
-    implementation("org.springframework.boot.experimental:spring-boot-starter-data-r2dbc")
+    implementation 'org.springframework.data:spring-data-r2dbc:3.0.5'
 
     // 内存数据库，通过h2创建数据库。MySQL太重不采用
     runtimeOnly("com.h2database:h2")
     runtimeOnly("io.r2dbc:r2dbc-h2")
 }
 
-// 自动管理依赖
-dependencyManagement {
-    imports {
-        mavenBom("org.springframework.boot.experimental:spring-boot-bom-r2dbc:0.1.0.M3")
-    }
-}
-
 compileKotlin {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_17
     kotlinOptions.freeCompilerArgs = ["-Xjsr305=strict"]
 }

@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.reactive.asPublisher
 import org.springframework.boot.ApplicationRunner
 import org.springframework.context.annotation.Bean
-import org.springframework.data.r2dbc.core.DatabaseClient
+import org.springframework.r2dbc.core.DatabaseClient
 import org.springframework.stereotype.Component
 
 // 准备数据库。Spring加载该配置文件
@@ -16,7 +16,7 @@ class ApplicationConfiguration {
     // 该方法由Spring调用，StudentRepository和DatabaseClient参数由Spring自动注入
     @Bean
     fun runner(studentRepository: StudentRepository, db: DatabaseClient) = ApplicationRunner {
-        val initDb = db.execute {
+        val initDb = db.sql {
             """
                 CREATE TABLE student (
                     id SERIAL PRIMARY KEY,
