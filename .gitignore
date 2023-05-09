@@ -13,6 +13,7 @@ build/
 .idea/libraries/
 .idea/misc.xml
 .idea/kotlinc.xml
+.idea/codeStyles/
 *.iws
 *.iml
 *.ipr
